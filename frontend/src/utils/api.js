@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "https://data-analyst-agent-kw5l.onrender.com";
 
 // Fetch query history from the API
 export const fetchHistory = async (limit = 10) => {
