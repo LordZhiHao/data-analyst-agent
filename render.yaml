@@ -23,7 +23,7 @@ services:
       - key: GEMINI_API_KEY
         sync: false
       - key: BIGQUERY_CREDENTIALS_PATH
-        value: /etc/secrets/bigquery-credentials.json
+        value: /etc/secrets/sql-agent-project.json
     autoDeploy: true
     rootDir: backend
 
