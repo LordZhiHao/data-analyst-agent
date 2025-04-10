@@ -85,7 +85,7 @@ def test_mongodb_connection(mongo_uri, db_name="vanna_agent", collection_name="q
 
 if __name__ == "__main__":
     # Get connection string from command line or use default
-    mongo_uri = sys.argv[1] if len(sys.argv) > 1 else "mongodb+srv://lozhihao15053:cCKcP3ioFZvB18dl@sql-agent-cluster.yb9rokx.mongodb.net/?retryWrites=true&w=majority&appName=sql-agent-cluster"
+    mongo_uri = sys.argv[1] if len(sys.argv) > 1 else "no-mongodb-uri-provided"
     
     # Run the test
     test_mongodb_connection(mongo_uri)
