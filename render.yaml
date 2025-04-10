@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: sql-agent-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    repo: https://github.com/LordZhiHao/data-analyst-agent.git # Replace with your repo URL
+    branch: main
+    plan: free
+    envVars:
+      - key: VANNA_API_KEY
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        value: vanna_agent
+      - key: MONGO_COLLECTION_NAME
+        value: query_history
+      - key: DEFAULT_DATASET
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://data-analyst-agent-frontend.onrender.com
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: BIGQUERY_CREDENTIALS_PATH
+        value: /etc/secrets/bigquery-credentials.json
+    autoDeploy: true
+    rootDir: backend
+
+  - type: web
+    name: sql-agent-frontend
+    env: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./build
+    repo: https://github.com/LordZhiHao/data-analyst-agent.git # Replace with your repo URL
+    branch: main
+    plan: free
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://data-analyst-agent-backend.onrender.com
+    autoDeploy: true
+    rootDir: frontend
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
