@@ -3,7 +3,7 @@ services:
     name: sql-agent-backend
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    startCommand: uvicorn app.api:app --host 0.0.0.0 --port $PORT
     repo: https://github.com/LordZhiHao/data-analyst-agent.git # Replace with your repo URL
     branch: main
     plan: free
