@@ -16,7 +16,7 @@ The system consists of three main components:
 
 1. **Python Backend**: Core SQL agent, FastAPI server, and CLI
 2. **React Frontend**: User-friendly web dashboard
-3. **Vector Database**: ChromaDB for storing and retrieving question-SQL pairs
+3. **Vector Database**: MongoDB for storing and retrieving question-SQL pairs
 
 ## 🚀 Quick Start
 
@@ -26,11 +26,11 @@ The easiest way to get started is with Docker Compose:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vanna-sql-agent.git
+git clone https://github.com/LordZhiHao/vanna-sql-agent.git
 cd vanna-sql-agent
 
 # Create environment file
-cp backend/.env.example backend/.env
+cp backend/.env
 # Edit backend/.env with your API keys and settings
 
 # Start the services
