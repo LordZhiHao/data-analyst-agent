@@ -1,0 +1,47 @@
+CREATE TABLE 'sqlAgentTestv1.groceries' (
+  id INTEGER NOT NULL,
+  gender STRING,
+  shared_account INTEGER,
+  membership_tier STRING,
+  membership_auto_renew INTEGER,
+  membership_fee INTEGER, 
+  membership_start_date DATE,
+  push_notification_enabled INTEGER,
+  have_app INTEGER,
+  app_engagement_score FLOAT64,
+  bought_store_brand INTEGER,
+  promotion_participation_count INTEGER,
+  average_basket_size FLOAT64,
+  use_count INTEGER,
+  reward_points_used INTEGER,
+  PRIMARY KEY (id)
+);
+
+-- Additional derived views for common analyses
+CREATE VIEW user_segments AS
+SELECT 
+  id,
+  CASE 
+    WHEN app_engagement_score > 75 AND use_count > 30 THEN 'Power User'
+    WHEN app_engagement_score > 50 AND use_count > 20 THEN 'Regular User'
+    WHEN app_engagement_score > 25 AND use_count > 10 THEN 'Occasional User'
+    ELSE 'Rare User'
+  END AS user_segment,
+  membership_tier,
+  average_basket_size,
+  use_count
+FROM 'sqlAgentTestv1.groceries';
+
+CREATE VIEW digital_engagement AS
+SELECT
+  id,
+  have_app,
+  push_notification_enabled,
+  app_engagement_score,
+  CASE
+    WHEN have_app = 1 AND push_notification_enabled = 1 AND app_engagement_score > 50 THEN 'Fully Engaged'
+    WHEN have_app = 1 AND push_notification_enabled = 1 THEN 'Notification Enabled'
+    WHEN have_app = 1 THEN 'App Installed Only'
+    ELSE 'No Digital Engagement'
+  END AS digital_engagement_level
+FROM 'sqlAgentTestv1.groceries';

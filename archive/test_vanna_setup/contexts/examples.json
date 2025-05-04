@@ -1,0 +1,26 @@
+[
+  {
+    "question": "What is the average membership fee by tier?",
+    "sql": "SELECT membership_tier, AVG(membership_fee) AS average_fee FROM 'sqlAgentTestv1.groceries' GROUP BY membership_tier ORDER BY average_fee DESC"
+  },
+  {
+    "question": "Which membership tier has the highest app engagement score?",
+    "sql": "SELECT membership_tier, AVG(app_engagement_score) AS avg_engagement FROM 'sqlAgentTestv1.groceries' GROUP BY membership_tier ORDER BY avg_engagement DESC LIMIT 1"
+  },
+  {
+    "question": "Do customers with the app spend more on average?",
+    "sql": "SELECT have_app, AVG(average_basket_size) AS avg_spending FROM 'sqlAgentTestv1.groceries' GROUP BY have_app"
+  },
+  {
+    "question": "What percentage of customers use auto-renew by membership tier?",
+    "sql": "SELECT membership_tier, COUNT(*) as total_customers, SUM(membership_auto_renew) as auto_renew_count, ROUND(SUM(membership_auto_renew) / COUNT(*) * 100, 2) as auto_renew_percentage FROM 'sqlAgentTestv1.groceries' GROUP BY membership_tier ORDER BY auto_renew_percentage DESC"
+  },
+  {
+    "question": "Who are our most valuable customers based on visit frequency and basket size?",
+    "sql": "SELECT id, gender, membership_tier, use_count, average_basket_size, (use_count * average_basket_size) AS estimated_annual_value FROM 'sqlAgentTestv1.groceries' ORDER BY estimated_annual_value DESC LIMIT 10"
+  },
+  {
+    "question": "Is there a correlation between app engagement score and average basket size?",
+    "sql": "SELECT ROUND(app_engagement_score/10)*10 AS engagement_bracket, AVG(average_basket_size) AS avg_basket, COUNT(*) AS customer_count FROM 'sqlAgentTestv1.groceries' GROUP BY engagement_bracket ORDER BY engagement_bracket"
+  }
+]

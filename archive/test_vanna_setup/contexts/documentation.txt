@@ -1,0 +1,39 @@
+# Membership & Groceries User Profile Dataset
+
+This dataset contains information about grocery store customers, their membership details, and shopping behaviors.
+
+## Table Structure: 'sqlAgentTestv1.groceries'
+
+### Customer Identifiers
+- id: Unique identifier for each customer (primary key)
+- gender: Customer's gender identifier (M/F/Other)
+- shared_account: Boolean flag (1=account shared with family members, 0=single user)
+
+### Membership Information
+- membership_tier: Membership level (Bronze, Silver, Gold, Platinum)
+- membership_auto_renew: Boolean flag (1=auto-renewal enabled, 0=manual renewal)
+- membership_fee: Annual fee paid for membership in dollars
+- membership_start_date: Date when the customer's membership began (YYYY-MM-DD)
+
+### Digital Engagement
+- push_notification_enabled: Boolean flag (1=notifications enabled, 0=disabled)
+- have_app: Boolean flag (1=has installed our app, 0=does not have app)
+- app_engagement_score: Numerical score from 0-100 measuring app activity level
+
+### Shopping Behavior
+- bought_store_brand: Boolean flag (1=purchases store brand products, 0=only buys name brands)
+- promotion_participation_count: Number of promotions customer has participated in
+- average_basket_size: Average dollar amount spent per shopping trip
+- use_count: Number of store visits in the last 12 months
+- reward_points_used: Number of reward points redeemed for discounts/products
+
+## Business Context
+
+This dataset is used for several analytical purposes:
+1. Customer segmentation for targeted marketing
+2. Membership tier optimization
+3. App feature and notification strategy
+4. Store brand adoption analysis
+5. Promotion effectiveness measurement
+
+Higher membership tiers pay larger fees but receive better discounts and exclusive offers. Our goal is to increase membership tier, app engagement, and store brand adoption across all customer segments.
